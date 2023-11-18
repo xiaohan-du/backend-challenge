@@ -37,7 +37,7 @@ public class LoanRepositoryImpl implements LoanRepository {
 
     @Override
     public Double calculateMonthlyPayment(Schedule schedule) {
-        Double monthlyInterestRate = schedule.getYearlyInterestRate() / schedule.getRepayMonths();
+        Double monthlyInterestRate = schedule.getYearlyInterestRate() / 12;
         Double operatorA;
         Double operatorB;
         Double monthlyPayment;
