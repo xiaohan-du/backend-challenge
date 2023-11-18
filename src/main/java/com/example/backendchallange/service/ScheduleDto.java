@@ -1,13 +1,11 @@
-package com.example.backendchallange.domain;
+package com.example.backendchallange.service;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
-import org.springframework.data.annotation.Id;
+import lombok.Value;
 
-@Data
+@Value
 @AllArgsConstructor
-public class Schedule {
-    @Id
+public class ScheduleDto {
     private Integer id;
     private Double balloonPayment;
     private Double yearlyInterestRate;

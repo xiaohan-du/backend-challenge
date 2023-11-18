@@ -9,4 +9,5 @@ public interface LoanRepository {
     List<Loan> getLoans();
     Double calculateMonthlyPayment(Schedule schedule);
     List<Loan> calculateLoans(Schedule schedule);
+    void addNewLoan(Loan loan);
 }

@@ -22,11 +22,3 @@ CREATE TABLE IF NOT EXISTS loan
     PRIMARY KEY (`id`)
     )
     engine = InnoDB;
-
--- -----------------------------------------------------
--- Insert Data
--- -----------------------------------------------------
-
-INSERT INTO loan (payment, principal, interest, balance)
-VALUES (1735.15, 1610.15, 125.00, 18389.85),
-       (1735.15, 1620.21, 114.94, 16769.64);
