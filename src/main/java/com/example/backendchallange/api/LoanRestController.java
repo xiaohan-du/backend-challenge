@@ -6,14 +6,13 @@ import com.example.backendchallange.service.LoanService;
 import com.example.backendchallange.service.ScheduleDto;
 import com.example.backendchallange.service.message.LoanRequest;
 import com.example.backendchallange.service.message.LoanResponse;
-import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -29,8 +28,9 @@ public class LoanRestController {
     }
 
     @PostMapping("loans/new")
-    public void calculateLoans() {
-        ScheduleDto scheduleDto = new ScheduleDto(1, 0.0, 0.075, 12, 20000.0);
+    public ResponseEntity calculateLoans(Integer id, Double balloonPayment, Double yearlyInterestRate, Integer repayMonths, Double assetCost) {
+        ScheduleDto scheduleDto = new ScheduleDto(id, balloonPayment, yearlyInterestRate, repayMonths, assetCost);
         loanService.calculateLoans(scheduleDto);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 }
