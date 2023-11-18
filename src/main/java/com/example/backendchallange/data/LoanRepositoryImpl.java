@@ -37,7 +37,7 @@ public class LoanRepositoryImpl implements LoanRepository {
 
     @Override
     public Double calculateMonthlyPayment(Schedule schedule) {
-        Double monthlyInterestRate = schedule.getYearlyInterestRate() / 12;
+        Double monthlyInterestRate = schedule.getYearlyInterestRate() / schedule.getRepayMonths();
         Double numerator;
         Double denominator;
         if (schedule.getBalloonPayment() == 0) {
@@ -45,7 +45,7 @@ public class LoanRepositoryImpl implements LoanRepository {
             denominator = Math.pow((1 + monthlyInterestRate), schedule.getRepayMonths());
         } else {
             numerator = schedule.getAssetCost() - (schedule.getBalloonPayment() / Math.pow((1 + monthlyInterestRate), schedule.getRepayMonths()));
-            denominator = monthlyInterestRate / (1 - Math.pow((1 + monthlyInterestRate), -12));
+            denominator = monthlyInterestRate / (1 - Math.pow((1 + monthlyInterestRate), -schedule.getRepayMonths()));
         }
         Double monthlyPayment = schedule.getAssetCost() * (numerator / denominator);
         return monthlyPayment;
@@ -55,9 +55,9 @@ public class LoanRepositoryImpl implements LoanRepository {
     public List<Loan> calculateLoans(Schedule schedule) {
         Double payment = calculateMonthlyPayment(schedule);
         List<Loan> loans = new ArrayList<>();
-        Double monthlyInterestRate = schedule.getYearlyInterestRate() / 12;
+        Double monthlyInterestRate = schedule.getYearlyInterestRate() / schedule.getRepayMonths();
         Double balance = schedule.getAssetCost();
-        for (int i = 1; i <= 12; i++) {
+        for (int i = 1; i <= schedule.getRepayMonths(); i++) {
             Double interest = balance * monthlyInterestRate;
             Double principal = payment - interest;
             balance = balance + interest - payment;
