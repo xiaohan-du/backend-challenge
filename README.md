@@ -1,7 +1,10 @@
 # backend-challenge
 
-## Run the application:
+## Run the application
 Gradle - bootRun
+
+## Notice
+**Reset the database before running JUnit tests!**
 
 ## Demo walkthrough
 * Reset the database: open Datagrip, open `src/main/resources/Loan_Database.sql`, `ctrl + A` to select all scripts, then `ctrl + enter` to run it to reset the database.
@@ -13,11 +16,11 @@ Gradle - bootRun
 
 
 
-## API endpoints:
+## API endpoints
 ### Endpoint
 GET `/api/loans`
 ### Description
-Retrieve a list of loan details. **When application first run, it should return `[]` as database is empty.**
+Retrieve a list of loan details. **When application first run or after resetting database, it should return `[]` as database is empty.**
 ### Example response
 ```
 [
@@ -50,3 +53,16 @@ Create a new loan based on a schedule
 * `assetCost` (_Double_): the cost of the asset being financed
 ### Example Postman Query
 ![image](https://github.com/xiaohan-du/backend-challenge/assets/16627563/95844131-ce64-440c-bc69-94ec4d4ae7a7)
+
+## JUnit tests (RESET database before running tests!)
+### Run
+`./gradlew test`: run all JUnit tests, find test results in `/build/reports/tests/test/index.html`
+
+`./gradlew -- jacocoTestCoverageVerification`: run all JUnit tests with test coverage reports, find report in `/build/reports/jacoco/test/html/index.html`
+
+### Results
+![image](https://github.com/xiaohan-du/backend-challenge/assets/16627563/8855caa5-718e-4b08-806f-d81c6f11e663)
+### Coverage
+![image](https://github.com/xiaohan-du/backend-challenge/assets/16627563/656c81d9-e884-44f9-9e86-a5423098e2c5)
+
+
