@@ -21,6 +21,7 @@
 - [x] Use tools like Jacoco for test coverage report.
 
 ### 5 What to add/change
+- [ ] Add a frontend to make GET/POST request more intuitive
 - [ ] Avoid frequent database reset
 - [ ] Clear time schedule
 - [ ] Result rounded to 2 decimal points
